@@ -1,0 +1,51 @@
+# qPCR result export format configuration
+# Customize export formats and save them as templates
+
+# Default layout settings
+layout:
+  cols_per_sample: 2      # Number of columns per sample
+  rows_per_gene: 2        # Number of rows per gene
+
+# Preset export formats
+formats:
+  # Recommended format: samples in rows, genes in columns, with Ct replicates stacked vertically.
+  sample_gene_vertical:
+    name: "Sample-Gene vertical layout"
+    description: "Rows are samples, columns are genes, and Ct replicates are stacked vertically."
+    row_type: "sample"    # Whether rows represent samples or genes
+    col_type: "gene"      # Whether columns represent samples or genes
+    ct_direction: "vertical"  # Ct direction: vertical or horizontal
+    default: true         # Whether this is the default format
+
+  # Genes in rows, samples in columns, with Ct replicates stacked vertically.
+  gene_sample_vertical:
+    name: "Gene-Sample vertical layout"
+    description: "Rows are genes, columns are samples, and Ct replicates are stacked vertically."
+    row_type: "gene"
+    col_type: "sample"
+    ct_direction: "vertical"
+    default: false
+
+  # Genes in rows, samples in columns, with Ct replicates arranged horizontally.
+  gene_sample_horizontal:
+    name: "Gene-Sample horizontal layout"
+    description: "Rows are genes, columns are samples, and Ct values are arranged horizontally."
+    row_type: "gene"
+    col_type: "sample"
+    ct_direction: "horizontal"
+    default: false
+
+# Custom sample names. Leave empty to auto-generate Sample1, Sample2, ...
+sample_names: []
+# Example: ["Control1", "Control2", "Treatment1", "Treatment2"]
+
+# Custom gene names. Leave empty to auto-generate Gene1, Gene2, ...
+gene_names: []
+# Example: ["GAPDH", "GeneA", "GeneB", "GeneC"]
+
+# UI theme
+theme:
+  style: "modern"         # modern, classic, dark
+  primary_color: "#2563eb"
+  accent_color: "#10b981"
+  font_family: "Microsoft YaHei UI"

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-启动qPCR结果处理器
+"""Start the qPCR Result Processor GUI.
 
 Usage:
     python start_gui.py
@@ -14,4 +13,3 @@ from src.complete_gui import main
 
 if __name__ == '__main__':
     main()
-

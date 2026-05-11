@@ -1,4 +1,4 @@
-"""qPCR Results Processor - 核心模块"""
+"""qPCR Results Processor core package."""
 from .plate_converter import PCRPlateConverter
 from .complete_gui import CompleteGUI, PCRDataParser, DeltaCtCalculator as GUICalculator
 from .ixo_parser import IxoParser, is_ixo_file

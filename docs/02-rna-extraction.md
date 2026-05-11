@@ -1,47 +1,46 @@
 # 02. RNA Extraction
 
-## 目标
+## Goal
 
-获得浓度足够、纯度合格、完整性可接受的 RNA，为逆转录和 qPCR 提供稳定模板。
+Extract RNA with sufficient concentration, acceptable purity, and adequate integrity for stable reverse transcription and qPCR.
 
-## TRIzol 基本流程
+## Basic TRIzol Workflow
 
 ```mermaid
 flowchart TD
-    A["样本裂解"] --> B["氯仿分相"]
-    B --> C["取上层水相"]
-    C --> D["异丙醇沉淀"]
-    D --> E["75% 乙醇洗涤"]
-    E --> F["短暂晾干"]
-    F --> G["RNase-free 水溶解"]
-    G --> H["NanoDrop / Qubit / Bioanalyzer QC"]
+    A["Sample lysis"] --> B["Chloroform phase separation"]
+    B --> C["Collect upper aqueous phase"]
+    C --> D["Isopropanol precipitation"]
+    D --> E["75% ethanol wash"]
+    E --> F["Brief air dry"]
+    F --> G["Dissolve in RNase-free water"]
+    G --> H["NanoDrop, Qubit, or Bioanalyzer QC"]
 ```
 
-## 常用比例
+## Typical Ratios
 
-| 步骤 | 典型条件 |
+| Step | Typical condition |
 |---|---|
-| 样本裂解 | 1 mL TRIzol / 50-100 mg 组织 |
-| 分相 | 200 uL 氯仿，剧烈振荡 15 s |
-| 离心 | 12000 g, 15 min, 4 degC |
-| 沉淀 | 上层水相 + 等体积异丙醇，室温 10 min |
-| 洗涤 | 1 mL 75% 乙醇，7500 g, 5 min |
-| 溶解 | 20-50 uL RNase-free 水 |
+| Sample lysis | 1 mL TRIzol per 50-100 mg tissue |
+| Phase separation | 200 uL chloroform, shake vigorously for 15 s |
+| Centrifugation | 12000 g, 15 min, 4 degC |
+| Precipitation | Upper aqueous phase plus equal volume isopropanol, 10 min at room temperature |
+| Wash | 1 mL 75% ethanol, 7500 g, 5 min |
+| Dissolution | 20-50 uL RNase-free water |
 
-## QC 标准
+## QC Criteria
 
-| 指标 | 合格 | 优秀 | 说明 |
+| Metric | Acceptable | Good | Notes |
 |---|---:|---:|---|
-| 浓度 | > 50 ng/uL | > 200 ng/uL | 低浓度会限制 RT 投入量 |
-| A260/280 | >= 1.8 | 1.9-2.1 | 低值常提示蛋白污染 |
-| A260/230 | >= 1.8 | >= 2.0 | 低值常提示盐、酚或有机溶剂残留 |
-| RIN | >= 7 | >= 8 | 需要 Bioanalyzer 等设备 |
+| Concentration | > 50 ng/uL | > 200 ng/uL | Low concentration limits RT input. |
+| A260/280 | >= 1.8 | 1.9-2.1 | Low values often indicate protein contamination. |
+| A260/230 | >= 1.8 | >= 2.0 | Low values often indicate salts, phenol, or solvent carryover. |
+| RIN | >= 7 | >= 8 | Requires Bioanalyzer or equivalent equipment. |
 
-## 操作要点
+## Practical Notes
 
-- 全程戴手套，使用 RNase-free 管和枪头。
-- 组织离体后尽快处理，无法立即提取时液氮速冻。
-- 取水相时不要吸到中间蛋白层。
-- RNA 沉淀不要过度晾干，否则难以重溶。
-- 后续 qPCR 建议设置 NRT 对照排查 gDNA。
-
+- Wear gloves and use RNase-free tubes and tips throughout the workflow.
+- Process tissue quickly after collection, or snap-freeze it in liquid nitrogen.
+- Avoid aspirating the interphase when collecting the aqueous phase.
+- Do not over-dry the RNA pellet, because it becomes difficult to dissolve.
+- Include an NRT control in downstream qPCR to detect genomic DNA carryover.

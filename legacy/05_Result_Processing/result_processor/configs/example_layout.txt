@@ -1,5 +1,5 @@
-# qPCR处理器配置文件
-# 示例: 8个样本，每样本3列；4个基因，每基因4行
+# qPCR processor configuration file
+# Example: 8 samples, 3 columns per sample; 4 genes, 4 rows per gene
 
 sample_count=8
 sample_0=Control1,1,3

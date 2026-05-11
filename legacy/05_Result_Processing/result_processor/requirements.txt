@@ -1,0 +1,9 @@
+pandas>=1.5.0
+openpyxl>=3.0.0
+numpy>=1.21.0
+xlsxwriter>=3.0.0
+pyyaml>=6.0.0
+matplotlib>=3.7.0
+scipy>=1.10.0       # v2.4: t/Welch/Mann-Whitney tests
+Pillow>=9.0.0       # v2.4: embed fold-change PNG figures into Excel via openpyxl
+# tkinter is included in the Python standard library.

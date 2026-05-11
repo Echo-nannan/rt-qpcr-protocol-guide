@@ -1,24 +1,25 @@
 # RT-qPCR Protocol Guide
 
-> 从引物设计、RNA 提取、逆转录、qPCR 实验到 Delta Delta Ct 数据分析的实验流程知识库。
+> A practical RT-qPCR workflow repository covering primer design, RNA extraction, reverse transcription, qPCR setup, and Delta Delta Ct analysis.
 
-本项目由本地学习资料整理而来，目标是把分散的实验笔记、SOP、质控标准、数据模板和 Python 工具整理成一个适合 GitHub 阅读、复用和持续维护的完整项目。
+This project turns scattered local notes, SOP fragments, QC rules, data templates, and Python utilities into a clean GitHub repository that can be reused and maintained.
 
-## 适用场景
+## Use Cases
 
-- RT-qPCR 实验前的流程学习和参数速查
-- RNA 提取、逆转录、qPCR 上机前的 checklist
-- Ct 数据整理、Delta Ct / Delta Delta Ct / fold change 分析
-- 实验记录模板、样本表和 Ct 表格模板管理
-- 用 Python 自动生成 RT 体系计划和 Delta Delta Ct 分析结果
-- 保留原始 `05_Result_Processing` GUI 项目源码和匿名示例
-- 后续开发自动化分析工具或实验室 SOP 文档库
+- Learn and review the RT-qPCR workflow before running experiments.
+- Check RNA extraction, reverse transcription, and qPCR setup requirements.
+- Organize Ct data and calculate Delta Ct, Delta Delta Ct, fold change, and log2FC.
+- Maintain experiment templates for sample metadata, RNA QC, Ct values, and records.
+- Generate reverse-transcription reaction plans and Delta Delta Ct results with Python.
+- Preserve the original `05_Result_Processing` GUI source code with sanitized example data.
+- Extend the repository into a lab SOP library or automated analysis toolkit.
 
-## 项目结构
+## Repository Layout
 
 ```text
 rt-qpcr-protocol-guide/
 +-- README.md
++-- UPLOAD_TO_GITHUB.md
 +-- LICENSE
 +-- pyproject.toml
 +-- .gitignore
@@ -47,7 +48,7 @@ rt-qpcr-protocol-guide/
 +-- legacy/
 |   +-- 05_Result_Processing/
 |       +-- README.md
-|       +-- 结果处理/
+|       +-- result_processor/
 |           +-- src/
 |           +-- scripts/
 |           +-- examples/
@@ -60,62 +61,62 @@ rt-qpcr-protocol-guide/
     +-- sample_info_template.csv
 ```
 
-## 完整流程
+## Workflow
 
 ```mermaid
 flowchart LR
-    A["1. 引物设计"] --> B["2. RNA 提取"]
-    B --> C["3. RNA 质检与逆转录"]
-    C --> D["4. qPCR 反应与上机"]
-    D --> E["5. Ct 数据处理"]
-    E --> F["6. 统计与图表"]
-    F --> G["报告与归档"]
+    A["1. Primer design"] --> B["2. RNA extraction"]
+    B --> C["3. RNA QC and reverse transcription"]
+    C --> D["4. qPCR setup and run"]
+    D --> E["5. Ct data processing"]
+    E --> F["6. Statistics and figures"]
+    F --> G["Report and archive"]
 ```
 
-## 章节索引
+## Documentation Index
 
-| 阶段 | 文档                                        | 核心内容                                        |
-| ---- | ------------------------------------------- | ----------------------------------------------- |
-| 1    | [引物设计](docs/01-primer-design.md)           | Tm、GC、产物长度、跨外显子、特异性验证          |
-| 2    | [RNA 提取](docs/02-rna-extraction.md)          | TRIzol/Freezol 流程、NanoDrop QC、污染排查      |
-| 3    | [逆转录计算](docs/03-reverse-transcription.md) | RNA 投入量、20 uL RT 体系、cDNA 保存            |
-| 4    | [qPCR 实验](docs/04-qpcr-experiment.md)        | 反应体系、板布局、扩增程序、质控                |
-| 5    | [结果处理](docs/05-data-analysis.md)           | Delta Ct、Delta Delta Ct、fold change、统计检验 |
-| 6    | [自动化架构](docs/06-automation-pipeline.md)   | 数据契约、批处理流程、报告输出                  |
-| 附录 | [故障排查](docs/troubleshooting.md)            | 无扩增、多峰、NTC 有信号、重复差异大            |
+| Stage | Document | Main topics |
+|---|---|---|
+| 1 | [Primer design](docs/01-primer-design.md) | Tm, GC content, amplicon length, exon junctions, specificity checks |
+| 2 | [RNA extraction](docs/02-rna-extraction.md) | TRIzol workflow, NanoDrop QC, contamination checks |
+| 3 | [Reverse transcription](docs/03-reverse-transcription.md) | RNA input, 20 uL RT setup, cDNA storage |
+| 4 | [qPCR experiment](docs/04-qpcr-experiment.md) | Reaction setup, plate layout, cycling program, QC |
+| 5 | [Data analysis](docs/05-data-analysis.md) | Delta Ct, Delta Delta Ct, fold change, statistical testing |
+| 6 | [Automation pipeline](docs/06-automation-pipeline.md) | Data contracts, batch workflow, report outputs |
+| Appendix | [Troubleshooting](docs/troubleshooting.md) | No amplification, multiple melt peaks, NTC signal, high replicate SD |
 
-## 关键质控标准
+## Key QC Criteria
 
-| 指标         |                 推荐标准 | 异常提示                       |
-| ------------ | -----------------------: | ------------------------------ |
-| RNA A260/280 |                  1.8-2.1 | 低于 1.8 可能有蛋白污染        |
-| RNA A260/230 |      >= 1.8，理想 >= 2.0 | 低值常见于盐、酚或有机溶剂残留 |
-| 技术重复 SD  |                 < 0.5 Ct | 移液误差、气泡、封板或模板问题 |
-| NTC          | Ct >= 38 或 Undetermined | Ct < 35 提示污染或引物二聚体   |
-| NRT          |                   无扩增 | 有信号提示 gDNA 污染           |
-| 扩增效率     |                 90%-110% | 需优化引物、模板浓度或反应条件 |
-| 熔解曲线     |                   单一峰 | 多峰提示非特异扩增             |
+| Metric | Recommended range | Warning sign |
+|---|---:|---|
+| RNA A260/280 | 1.8-2.1 | Values below 1.8 may indicate protein contamination. |
+| RNA A260/230 | >= 1.8, ideally >= 2.0 | Low values often indicate salt, phenol, or solvent carryover. |
+| Technical replicate SD | < 0.5 Ct | High SD suggests pipetting errors, bubbles, sealing issues, or poor mixing. |
+| NTC | Ct >= 38 or Undetermined | Ct < 35 suggests contamination or primer dimers. |
+| NRT | No amplification | Signal suggests genomic DNA contamination. |
+| Amplification efficiency | 90%-110% | Out-of-range efficiency requires primer or reaction optimization. |
+| Melt curve | Single peak | Multiple peaks suggest nonspecific amplification. |
 
-## 数据模板
+## Data Templates
 
-项目提供 3 个最小输入模板：
+This repository provides three minimal input templates:
 
-- [sample_info_template.csv](templates/sample_info_template.csv): 样本分组信息
-- [rna_concentration_template.csv](templates/rna_concentration_template.csv): RNA 浓度和纯度记录
-- [ct_values_template.csv](templates/ct_values_template.csv): qPCR Ct 原始数据
+- [sample_info_template.csv](templates/sample_info_template.csv): sample metadata and groups
+- [rna_concentration_template.csv](templates/rna_concentration_template.csv): RNA concentration and purity records
+- [ct_values_template.csv](templates/ct_values_template.csv): raw qPCR Ct values
 
-核心列名建议保持英文，方便后续 Python/R 自动化读取。
+Use English column names for easier Python and R automation.
 
-## Python 工具
+## Python Toolkit
 
-### 安装
+### Install
 
 ```powershell
 cd rt-qpcr-protocol-guide
 python -m pip install -e .
 ```
 
-### 生成逆转录配液计划
+### Generate a Reverse-Transcription Plan
 
 ```powershell
 rt-qpcr-guide rt-plan `
@@ -124,7 +125,7 @@ rt-qpcr-guide rt-plan `
   --output results\demo_rt_plan.csv
 ```
 
-### 运行 Delta Delta Ct 分析
+### Run Delta Delta Ct Analysis
 
 ```powershell
 rt-qpcr-guide analyze `
@@ -135,7 +136,7 @@ rt-qpcr-guide analyze `
   --outdir results\demo_ddct
 ```
 
-输出：
+Output:
 
 ```text
 results/demo_ddct/
@@ -143,37 +144,37 @@ results/demo_ddct/
 +-- summary.csv
 ```
 
-### 运行测试
+### Run Tests
 
 ```powershell
 python -m pytest tests -q
 ```
 
-当前测试覆盖：
+Current tests cover:
 
-- RT 体系体积计算
-- 引物长度、GC、Tm、产物长度 QC
-- Delta Ct / Delta Delta Ct / fold change 计算
-- summary CSV 导出
+- RT reaction volume calculation
+- Primer length, GC content, Tm, and amplicon-length QC
+- Delta Ct, Delta Delta Ct, fold change, and log2FC calculations
+- Summary CSV export
 
-## 原始 GUI 项目
+## Legacy GUI Project
 
-本仓库已保留 `_archive/05_Result_Processing` 中的原始结果处理项目，位置：
+The original result-processing GUI project is preserved at:
 
 ```text
-legacy/05_Result_Processing/结果处理/
+legacy/05_Result_Processing/result_processor/
 ```
 
-这个目录包含 Tkinter GUI 源码、最小示例数据、配置文件和运行脚本。为了避免把本机环境、二进制程序和生成结果塞进仓库，`exe版本/venv/`、打包 `exe`、日志和导出结果没有上传；需要 Python 运行时请按 `requirements.txt` 安装依赖。
+This folder contains Tkinter GUI source code, sanitized example data, configuration files, and launch scripts. Local virtual environments, binary executables, logs, and generated result files are intentionally excluded from the repository.
 
-运行 GUI 源码：
+Run the GUI from source:
 
 ```powershell
-cd legacy\05_Result_Processing\结果处理
+cd legacy\05_Result_Processing\result_processor
 python -m pip install -r requirements.txt
 python scripts\start_gui.py
 ```
 
-## 免责声明
+## Disclaimer
 
-本项目是实验学习和流程管理资料，不替代试剂盒说明书、仪器说明书、单位 SOP 或生物安全要求。实际实验参数应结合样本类型、试剂品牌、仪器型号和实验室规范确认。
+This repository is for experiment learning, workflow management, and lightweight analysis support. It does not replace kit manuals, instrument manuals, institutional SOPs, or biosafety requirements. Always verify final experimental parameters against sample type, reagent brand, instrument model, and lab policy.

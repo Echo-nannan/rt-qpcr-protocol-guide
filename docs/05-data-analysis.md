@@ -1,22 +1,22 @@
 # 05. Data Analysis
 
-## 输入数据
+## Input Data
 
-建议把仪器导出的 Ct 值整理成长表格式：
+Organize instrument-exported Ct values in long-table format:
 
 | sample_id | gene | ct | replicate | well |
 |---|---|---:|---:|---|
 | S1 | GAPDH | 18.5 | 1 | A1 |
 | S1 | GeneA | 24.2 | 1 | B1 |
 
-样本分组表：
+Sample metadata table:
 
 | sample_id | group | tissue | batch |
 |---|---|---|---|
 | S1 | Control | Brain | Batch1 |
 | S2 | Treatment | Brain | Batch1 |
 
-## Delta Delta Ct 计算
+## Delta Delta Ct Calculation
 
 ```text
 Delta Ct = Ct_target - Ct_reference
@@ -28,40 +28,39 @@ Fold Change = 2^(-Delta Delta Ct)
 log2FC = -Delta Delta Ct
 ```
 
-## 多内参归一化
+## Multiple Reference Genes
 
-多内参时推荐使用内参 Ct 的几何均值思想进行归一化，避免单一内参波动造成偏差。
+When multiple reference genes are used, normalize with the geometric-mean concept for reference Ct values. This reduces bias from instability in a single reference gene.
 
 ```text
 reference Ct = geometric mean of reference gene Cts
 Delta Ct = target Ct - reference Ct
 ```
 
-## 统计建议
+## Statistical Recommendations
 
-| 场景 | 推荐方法 |
+| Scenario | Recommended method |
 |---|---|
-| 两组比较，方差近似 | Student t-test |
-| 两组比较，方差不齐 | Welch t-test |
-| 两组非正态 | Mann-Whitney U |
-| 多组比较 | one-way ANOVA |
-| 多基因多重检验 | Benjamini-Hochberg FDR |
+| Two groups with similar variance | Student t-test |
+| Two groups with unequal variance | Welch t-test |
+| Two non-normal groups | Mann-Whitney U |
+| Multiple groups | one-way ANOVA |
+| Multiple genes and multiple tests | Benjamini-Hochberg FDR |
 
-统计检验优先在 Delta Ct 上进行，而不是直接在 fold change 上做检验。
+Run statistical tests on Delta Ct values rather than directly on fold change values.
 
-## 显著性标记
+## Significance Labels
 
-| 标记 | 阈值 |
+| Label | Threshold |
 |---|---:|
-| ns | p 或 FDR >= 0.05 |
+| ns | p or FDR >= 0.05 |
 | * | < 0.05 |
 | ** | < 0.01 |
 | *** | < 0.001 |
 
-## 输出建议
+## Suggested Outputs
 
-- `summary.csv`: 每个基因的 fold change、log2FC、p value、FDR
-- `detail.csv`: 每个样本的 Ct、Delta Ct、Delta Delta Ct
-- `figures/`: 柱状图、散点图、火山图
-- `provenance.json`: 参数、输入文件 hash、软件版本和运行时间
-
+- `summary.csv`: fold change, log2FC, p value, and FDR for each gene
+- `detail.csv`: Ct, Delta Ct, and Delta Delta Ct for each sample
+- `figures/`: bar plots, scatter plots, or volcano plots
+- `provenance.json`: parameters, input file hashes, software version, and run time

@@ -1,23 +1,22 @@
 # Troubleshooting
 
-| 问题 | 常见原因 | 处理建议 |
+| Problem | Common causes | Suggested actions |
 |---|---|---|
-| 无扩增 | 模板缺失、引物错误、Mix 失效 | 检查 cDNA、引物序列、反应体系和程序 |
-| Ct > 35 | 模板量低、目标基因低表达、效率差 | 增加模板量、降低稀释倍数、优化引物 |
-| Ct 太低 | 模板过多、污染或阈值设置不当 | 稀释模板，检查 NTC 和阈值 |
-| 技术重复 SD > 0.5 | 移液误差、气泡、混匀不足、封板问题 | 重复离心，检查孔位和移液记录 |
-| NTC 有扩增 | 试剂污染、引物二聚体 | 更换水和 Mix，重新配引物，检查熔解曲线 |
-| NRT 有扩增 | gDNA 残留 | 加强 DNase/gDNA wiper 步骤，重新设计跨外显子引物 |
-| 熔解曲线多峰 | 非特异扩增或二聚体 | 提高退火温度，降低引物浓度，重新设计引物 |
-| 扩增效率 < 90% | 引物效率差、抑制物、模板质量差 | 做标准曲线，稀释模板，重新提取 RNA |
-| 扩增效率 > 110% | 引物二聚体、标准曲线误差 | 检查熔解曲线，重做梯度稀释 |
-| 内参不稳定 | 内参受处理影响或样本质量不一 | 更换或增加内参，使用多内参归一化 |
+| No amplification | Missing template, wrong primers, failed mix | Check cDNA, primer sequence, reaction setup, and cycling program. |
+| Ct > 35 | Low template input, low target expression, poor efficiency | Increase template input, reduce dilution, or optimize primers. |
+| Ct is too low | Too much template, contamination, or incorrect threshold | Dilute template and check NTC and threshold settings. |
+| Technical replicate SD > 0.5 | Pipetting error, bubbles, poor mixing, sealing issue | Spin plate again and review well positions and pipetting records. |
+| NTC amplification | Reagent contamination or primer dimers | Replace water and mix, remake primers, and inspect melt curves. |
+| NRT amplification | Genomic DNA carryover | Strengthen DNase or gDNA-wiper treatment and redesign exon-spanning primers. |
+| Multiple melt-curve peaks | Nonspecific amplification or primer dimers | Raise annealing temperature, lower primer concentration, or redesign primers. |
+| Efficiency < 90% | Poor primer efficiency, inhibitors, or low template quality | Run a standard curve, dilute template, or re-extract RNA. |
+| Efficiency > 110% | Primer dimers or standard-curve error | Inspect melt curves and repeat serial dilution. |
+| Unstable reference gene | Reference gene affected by treatment or uneven sample quality | Replace or add reference genes and use multi-reference normalization. |
 
-## 排查顺序
+## Troubleshooting Order
 
-1. 先看 NTC/NRT，排除污染和 gDNA。
-2. 再看熔解曲线，排除非特异扩增。
-3. 再看技术重复 SD，排除移液和孔位问题。
-4. 再看内参稳定性，判断样本质量和归一化是否可靠。
-5. 最后检查统计和 Delta Delta Ct 参数。
-
+1. Check NTC and NRT first to rule out contamination and genomic DNA.
+2. Review melt curves to rule out nonspecific amplification.
+3. Review technical replicate SD to catch pipetting or well-position issues.
+4. Check reference gene stability to evaluate sample quality and normalization reliability.
+5. Review statistical settings and Delta Delta Ct parameters last.

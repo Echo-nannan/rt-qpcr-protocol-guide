@@ -1,66 +1,66 @@
-# Stage 5: 结果处理与 ΔΔCt 分析
+# Stage 5: Result Processing and Delta Delta Ct Analysis
 
 ```mermaid
 flowchart TD
-    A["仪器导出\nCt 原始数据"] --> B["数据整理\n384 孔板 → 表格"]
-    B --> C["质检过滤\nCt > 35 标记 undetermined\nSD > 0.5 标记异常"]
-    C --> D["ΔCt\n= Ct_目标基因 − Ct_内参"]
-    D --> E["ΔΔCt\n= ΔCt_处理组 − mean(ΔCt_对照组)"]
-    E --> F["Fold Change\n= 2^(−ΔΔCt)"]
-    F --> G["统计检验\nt-test / Welch / Mann-Whitney"]
-    G --> H["FDR 校正\nBenjamini-Hochberg"]
-    H --> I["发表级图表\n柱状图 + 火山图 + 散点图"]
+    A["Instrument-exported raw Ct data"] --> B["Data reshaping and plate conversion"]
+    B --> C["QC filtering: Ct > 35 and replicate SD > 0.5"]
+    C --> D["Delta Ct = Ct_target - Ct_reference"]
+    D --> E["Delta Delta Ct = Delta Ct_treatment - mean Delta Ct_control"]
+    E --> F["Fold Change = 2^(-Delta Delta Ct)"]
+    F --> G["Statistical tests: t-test, Welch, or Mann-Whitney"]
+    G --> H["FDR correction with Benjamini-Hochberg"]
+    H --> I["Publication-oriented tables and figures"]
 
     style A fill:#EDE9FE,stroke:#7C3AED
     style I fill:#DCFCE7,stroke:#16A34A
 ```
 
----
+## Contents
 
-## 本阶段内容
+| Path | Description |
+|---|---|
+| `result_processor/README.md` | User guide for the qPCR Result Processor Pro GUI |
+| `result_processor/src/complete_gui.py` | Tkinter GUI for plate parsing, format conversion, Delta Delta Ct analysis, and batch export |
+| `result_processor/src/ixo_parser.py` | Roche LightCycler 480 `.ixo` parser |
+| `result_processor/src/plate_converter.py` | Plate conversion helpers |
+| `result_processor/configs/export_formats.yaml` | Export format configuration |
+| `result_processor/examples/sample_ddct_input.csv` | Sanitized Delta Delta Ct example input |
 
-| 文件 | 说明 |
-|------|------|
-| `结果处理/README.md` | qPCR 结果处理器 Pro 使用说明 |
-| `结果处理/src/complete_gui.py` | Tkinter GUI（~1590 行）：Roche LightCycler 384 孔板解析、格式转换、ΔΔCt 计算、批量导出 |
-| `结果处理/configs/export_formats.yaml` | 导出格式定义 |
-| `结果处理/examples/sample_ddct_input.csv` | 匿名化 ΔΔCt 示例输入 |
+## Delta Delta Ct Formula
 
-## ΔΔCt 计算公式
+```text
+1. Delta Ct(sample, gene) = mean(Ct_target_gene) - mean(Ct_reference_gene)
 
+2. Delta Delta Ct(sample, gene) = Delta Ct(sample) - mean(Delta Ct(control samples))
+
+3. Fold Change = 2^(-Delta Delta Ct)
+
+4. log2FC = -Delta Delta Ct
 ```
-1. ΔCt(样本, 基因) = mean(Ct_目标基因) − mean(Ct_内参基因)
 
-2. ΔΔCt(样本, 基因) = ΔCt(样本) − mean(ΔCt(所有对照组样本))
+## Significance Labels
 
-3. Fold Change = 2^(−ΔΔCt)
+| Label | FDR range | Meaning |
+|---|---:|---|
+| `***` | < 0.001 | Very significant |
+| `**` | < 0.01 | Highly significant |
+| `*` | < 0.05 | Significant |
+| `ns` | >= 0.05 | Not significant |
 
-4. log2FC = −ΔΔCt
-```
+## Outlier Handling
 
-## 显著性判定
+| Method | Use case | Principle |
+|---|---|---|
+| Grubbs test | Small sample size, usually n <= 6 | Tests whether the largest deviation is significant. |
+| IQR rule | Larger sample sets | Values outside Q1 - 1.5 IQR and Q3 + 1.5 IQR are flagged. |
+| Z-score | Approximately normal data | Absolute z-score > 2 is flagged as an outlier. |
 
-| 标记 | FDR 范围 | 含义 |
-|------|----------|------|
-| `***` | < 0.001 | 极显著 |
-| `**` | < 0.01 | 高度显著 |
-| `*` | < 0.05 | 显著 |
-| `ns` | ≥ 0.05 | 不显著 |
+## Sanitized Example
 
-## 离群值处理
+Example source: `result_processor/examples/sample_ddct_input.csv`
 
-| 方法 | 适用场景 | 原理 |
-|------|----------|------|
-| Grubbs 检验 | 小样本 (n ≤ 6) | 检验最大偏差值是否显著 |
-| IQR 法 | 大样本 | Q1−1.5×IQR ~ Q3+1.5×IQR |
-| Z-Score | 正态分布 | \|z\| > 2 判为离群 |
-
-## 匿名化数据示例
-
-来自 `结果处理/examples/sample_ddct_input.csv`：
-
-| Sample | Gene | Ct | ΔCt | ΔΔCt | 2^-ΔΔCt |
-|--------|------|----|-----|------|---------|
+| Sample | Gene | Ct | Delta Ct | Delta Delta Ct | 2^(-Delta Delta Ct) |
+|---|---|---:|---:|---:|---:|
 | Control_1 | GAPDH | 18.5 | - | - | - |
 | Control_1 | GeneA | 24.2 | 5.7 | 0 | 1.0 |
 | Treatment_1 | GeneA | 22.1 | 3.8 | -1.9 | 3.73 |

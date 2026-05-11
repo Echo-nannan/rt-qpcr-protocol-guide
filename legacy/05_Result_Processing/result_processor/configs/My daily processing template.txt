@@ -1,4 +1,4 @@
-# qPCR处理器配置文件
+# qPCR processor configuration file
 sample_count=12
 sample_0=Sample1,1,2
 sample_1=Sample2,3,4

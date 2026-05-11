@@ -1,57 +1,56 @@
 # 01. Primer Design
 
-## 目标
+## Goal
 
-设计特异、稳定、效率合格的 qPCR 引物，减少 gDNA、引物二聚体和非特异扩增对 Ct 值的影响。
+Design specific, stable, and efficient qPCR primers to reduce genomic DNA amplification, primer dimers, nonspecific products, and Ct-value bias.
 
-## 推荐流程
+## Recommended Workflow
 
 ```mermaid
 flowchart LR
-    A["确定目标基因"] --> B["检索转录本和外显子结构"]
-    B --> C["PrimerBank / Primer-BLAST 初筛"]
-    C --> D["检查 Tm、GC、长度、产物长度"]
-    D --> E["BLAST 特异性验证"]
-    E --> F["订购引物"]
-    F --> G["标准曲线验证扩增效率"]
+    A["Define target gene"] --> B["Check transcripts and exon structure"]
+    B --> C["Initial design with PrimerBank or Primer-BLAST"]
+    C --> D["Check Tm, GC content, primer length, and amplicon length"]
+    D --> E["Validate specificity with BLAST"]
+    E --> F["Order primers"]
+    F --> G["Validate amplification efficiency with a standard curve"]
 ```
 
-## 设计参数
+## Design Parameters
 
-| 参数 | 推荐范围 | 说明 |
+| Parameter | Recommended range | Notes |
 |---|---:|---|
-| 引物长度 | 18-24 bp | 常用 20 bp 左右 |
-| Tm | 58-62 degC | 上下游 Tm 差建议 < 2 degC |
-| GC 含量 | 40%-60% | 避免过高 GC 导致退火困难 |
-| 产物长度 | 80-200 bp | 100-150 bp 通常最稳 |
-| 3' 端 | 可有 G/C，但避免连续 G/C | 降低非特异风险 |
-| 自身互补 | < 4 bp | 避免发夹结构 |
-| 引物二聚体 | 3' 端互补越少越好 | 二聚体会影响 SYBR Green 信号 |
+| Primer length | 18-24 bp | Around 20 bp is commonly used. |
+| Tm | 58-62 degC | Forward and reverse primers should differ by less than 2 degC. |
+| GC content | 40%-60% | Avoid very high GC content, which can impair annealing. |
+| Amplicon length | 80-200 bp | 100-150 bp is usually robust for qPCR. |
+| 3' end | G/C is acceptable, but avoid long G/C runs | Reduces nonspecific priming risk. |
+| Self-complementarity | < 4 bp | Helps avoid hairpin structures. |
+| Primer dimer risk | Minimize 3' complementarity | Dimers affect SYBR Green signal. |
 
-## gDNA 干扰控制
+## Genomic DNA Control
 
-优先级建议：
+Preferred strategies:
 
-1. 引物跨越 exon-exon junction
-2. 正反向引物位于不同外显子
-3. 引物对跨越长内含子，使 gDNA 产物过长而难以扩增
-4. 同时设置 NRT 对照检查 gDNA 残留
+1. Design primers across an exon-exon junction.
+2. Place forward and reverse primers in different exons.
+3. Span a long intron so the genomic DNA amplicon is too large to amplify efficiently.
+4. Include an NRT control to check genomic DNA carryover.
 
-## 验证工具
+## Tools
 
-| 工具 | 用途 |
+| Tool | Purpose |
 |---|---|
-| Primer-BLAST | 引物设计和特异性检查 |
-| PrimerBank | 查询人/小鼠已验证引物 |
-| Primer3 | 自定义设计参数 |
-| IDT OligoAnalyzer | 发夹、二聚体和 Tm 评估 |
+| Primer-BLAST | Primer design and specificity checking |
+| PrimerBank | Validated human and mouse primer lookup |
+| Primer3 | Custom primer design |
+| IDT OligoAnalyzer | Hairpin, dimer, and Tm evaluation |
 
-## 上机前确认
+## Pre-Run Checklist
 
-- [ ] 目标基因和物种正确
-- [ ] 转录本编号记录清楚
-- [ ] 引物跨外显子或可区分 gDNA
-- [ ] Primer-BLAST 无明显非目标扩增
-- [ ] 产物长度适合 qPCR
-- [ ] 标准曲线效率在 90%-110%
-
+- [ ] Target gene and species are correct.
+- [ ] Transcript accession is recorded.
+- [ ] Primers span exons or can distinguish cDNA from genomic DNA.
+- [ ] Primer-BLAST shows no major off-target products.
+- [ ] Amplicon length is suitable for qPCR.
+- [ ] Standard-curve efficiency is within 90%-110%.

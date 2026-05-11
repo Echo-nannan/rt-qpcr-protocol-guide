@@ -1,43 +1,42 @@
 # 03. Reverse Transcription
 
-## 目标
+## Goal
 
-将等量 RNA 逆转录为 cDNA，保证不同样本在 qPCR 阶段具有可比性。
+Reverse-transcribe equal amounts of RNA into cDNA so samples remain comparable during qPCR.
 
-## 计算原则
+## Calculation Rule
 
-RNA 投入量建议在同一批实验中保持一致。例如统一投入 500 ng 或 1000 ng。
+Use the same RNA input amount across one experimental batch, such as 500 ng or 1000 ng per sample.
 
 ```text
-RNA 体积 uL = 目标投入量 ng / RNA 浓度 ng/uL
+RNA volume (uL) = target RNA input (ng) / RNA concentration (ng/uL)
 ```
 
-如果计算得到 RNA 体积过大，应考虑浓缩 RNA 或降低所有样本的统一投入量。
+If the calculated RNA volume is too large, concentrate RNA or lower the unified RNA input for all samples.
 
-## 20 uL RT 体系示例
+## Example 20 uL RT Reaction
 
-| 组分 | 体积 | 说明 |
+| Component | Volume | Notes |
 |---|---:|---|
-| RNA 模板 | X uL | 含等量总 RNA |
-| 4x gDNA wiper Mix | 4 uL | 去除 gDNA |
-| RNase-free water | 补至 16 uL | 第一阶段体系 |
-| 5x qRT SuperMix | 4 uL | 逆转录体系 |
-| 总体积 | 20 uL |  |
+| RNA template | X uL | Equal total RNA input |
+| 4x gDNA wiper Mix | 4 uL | Genomic DNA removal |
+| RNase-free water | To 16 uL | First-stage reaction volume |
+| 5x qRT SuperMix | 4 uL | Reverse-transcription mix |
+| Total volume | 20 uL |  |
 
-## 程序示例
+## Example Program
 
-| 阶段 | 温度 | 时间 |
+| Step | Temperature | Time |
 |---|---:|---:|
-| gDNA 去除 | 42 degC | 2 min |
-| 引物退火 | 25 degC | 5 min |
-| 逆转录 | 50 degC | 15 min |
-| 酶灭活 | 85 degC | 5 sec |
-| 保存 | 4 degC | hold |
+| gDNA removal | 42 degC | 2 min |
+| Primer annealing | 25 degC | 5 min |
+| Reverse transcription | 50 degC | 15 min |
+| Enzyme inactivation | 85 degC | 5 sec |
+| Hold | 4 degC | hold |
 
-## cDNA 使用
+## cDNA Handling
 
-- 短期可 4 degC 保存，长期建议 -20 degC。
-- qPCR 前常用 5x 或 10x 稀释。
-- 同一实验所有样本使用相同稀释倍数。
-- 避免反复冻融，必要时分装保存。
-
+- Store cDNA at 4 degC for short-term use and at -20 degC for long-term storage.
+- Use a consistent dilution, commonly 5x or 10x, before qPCR.
+- Apply the same dilution factor to all samples in one experiment.
+- Avoid repeated freeze-thaw cycles; aliquot if needed.
