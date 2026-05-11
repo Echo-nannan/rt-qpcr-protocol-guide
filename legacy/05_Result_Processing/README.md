@@ -24,8 +24,7 @@ flowchart TD
 | `结果处理/README.md` | qPCR 结果处理器 Pro 使用说明 |
 | `结果处理/src/complete_gui.py` | Tkinter GUI（~1590 行）：Roche LightCycler 384 孔板解析、格式转换、ΔΔCt 计算、批量导出 |
 | `结果处理/configs/export_formats.yaml` | 导出格式定义 |
-| `结果处理/20250111F1-♂-male-hmc-3...csv` | 实际分析结果示例 |
-| `结果处理/exe版本/` | 打包的 .exe 独立版本 |
+| `结果处理/examples/sample_ddct_input.csv` | 匿名化 ΔΔCt 示例输入 |
 
 ## ΔΔCt 计算公式
 
@@ -56,12 +55,12 @@ flowchart TD
 | IQR 法 | 大样本 | Q1−1.5×IQR ~ Q3+1.5×IQR |
 | Z-Score | 正态分布 | \|z\| > 2 判为离群 |
 
-## 实际数据示例
+## 匿名化数据示例
 
-来自 `20250111F1-♂-male-hmc-3...csv`：
+来自 `结果处理/examples/sample_ddct_input.csv`：
 
 | Sample | Gene | Ct | ΔCt | ΔΔCt | 2^-ΔΔCt |
 |--------|------|----|-----|------|---------|
-| Control_1 | GAPDH | 18.5 | — | — | — |
-| Control_1 | Camk2a | 24.2 | 5.7 | 0 | 1.0 |
-| Treatment_1 | Camk2a | 22.1 | 3.8 | -1.9 | 3.73 |
+| Control_1 | GAPDH | 18.5 | - | - | - |
+| Control_1 | GeneA | 24.2 | 5.7 | 0 | 1.0 |
+| Treatment_1 | GeneA | 22.1 | 3.8 | -1.9 | 3.73 |

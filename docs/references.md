@@ -18,13 +18,6 @@
 | Python scipy/statsmodels | Statistical tests and FDR |
 | seaborn/matplotlib | Publication-style plots |
 
-## Local source archive
+## Source Archive
 
-This clean GitHub project was summarized from the local folder:
-
-```text
-J:\Learning_Resource\Experiment_Protocal\Basic_Experiment\RT-qpcr\_archive
-```
-
-The original archive contains raw notes, scripts, backups, generated environments and historical builds. This repository keeps only the curated documentation and lightweight templates.
-
+This clean GitHub project was summarized from a local RT-qPCR learning archive. The original archive contained raw notes, scripts, backups, generated environments and historical builds. This repository keeps only curated documentation, reusable source code, lightweight templates and sanitized examples.

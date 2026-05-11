@@ -23,14 +23,11 @@
 - `{sample}` - 样本信息（可自定义）
 - `{gene}` - 基因名
 
-**示例**：`{date}_{sample}_Analysis and processing` → `20250124_F1-♂-male-hmc-3_Analysis and processing.csv`
+**示例**：`{date}_{sample}_Analysis and processing` → `20250124_DemoSample_Analysis and processing.csv`
 
 ## 安装
 
-### 方式1：直接使用（推荐）
-双击 `exe版本/qPCR结果处理器.exe` 即可运行。
-
-### 方式2：Python环境运行
+### Python环境运行
 ```bash
 # 安装依赖
 pip install -r requirements.txt
@@ -119,16 +116,12 @@ Sample Name | Target Name | CT Value | 内参均值 | ... | Sample Name | Target
 │   ├── ixo_parser.py          # Roche LightCycler 480 .ixo 原生文件解析器
 │   └── plate_converter.py     # 板式转换模块
 ├── scripts/
-│   ├── start_gui.py           # 启动脚本
-│   ├── _smoke_test_oneclick.py    # .ixo 一键全流程端到端烟测
-│   └── _smoke_test_wide_tab.py    # 宽表 → ΔΔCt 标签页烟测
+│   └── start_gui.py           # 启动脚本
 ├── configs/
 │   ├── example_layout.txt     # 布局配置示例
 │   └── export_formats.yaml    # 导出格式配置
 ├── examples/
 │   └── sample_ddct_input.csv  # 示例输入数据
-├── exe版本/
-│   └── qPCR结果处理器.exe     # 可执行文件
 ├── requirements.txt
 ├── run_gui.bat
 └── README.md

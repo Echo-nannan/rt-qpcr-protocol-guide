@@ -16,6 +16,8 @@ env/
 
 # Local outputs
 results/
+Results/
+**/Results/
 outputs/
 reports/
 logs/
@@ -23,6 +25,11 @@ logs/
 
 # Large/generated lab artifacts
 *.exe
+*.xls
+*.xlsx
+*.pdf
+*.png
+*.svg
 *.zip
 *.7z
 *.rar
@@ -33,4 +40,3 @@ logs/
 _archive/
 _backup/
 _scaffolds/
-

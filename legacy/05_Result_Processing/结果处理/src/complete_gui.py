@@ -1823,7 +1823,7 @@ class CompleteGUI:
 
         ref_var = tk.StringVar(value=ref_default)
         ctrl_var = tk.StringVar(value=ctrl_default)
-        info_var = tk.StringVar(value="F1-PFC")
+        info_var = tk.StringVar(value="DemoSample")
         stat_var = tk.StringVar(value="Student t")
         method_var = tk.StringVar(value="2^-ΔΔCt")
         embed_var = tk.BooleanVar(value=True)
@@ -2221,7 +2221,7 @@ class CompleteGUI:
         tk.Label(sample_info_row, text="样本信息 {sample}:", font=Theme.FONT_NORMAL,
                 bg=Theme.BG_CARD, fg=Theme.TEXT_PRIMARY).pack(side=tk.LEFT)
 
-        self.dc_sample_info = tk.StringVar(value="F1-♂-male-hmc-3")
+        self.dc_sample_info = tk.StringVar(value="DemoSample")
         sample_info_entry = tk.Entry(sample_info_row, textvariable=self.dc_sample_info,
                                     font=Theme.FONT_NORMAL, relief=tk.FLAT,
                                     bg=Theme.BG_INPUT, fg=Theme.TEXT_PRIMARY, width=30,
@@ -3136,7 +3136,7 @@ class CompleteGUI:
             sample_info_row, text="样本信息 {sample}:", font=Theme.FONT_NORMAL,
             bg=Theme.BG_CARD, fg=Theme.TEXT_PRIMARY,
         ).pack(side=tk.LEFT)
-        self.wide_sample_info = tk.StringVar(value="F1-PFC")
+        self.wide_sample_info = tk.StringVar(value="DemoSample")
         tk.Entry(
             sample_info_row, textvariable=self.wide_sample_info,
             font=Theme.FONT_NORMAL, relief=tk.FLAT,
@@ -3892,4 +3892,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

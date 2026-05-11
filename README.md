@@ -11,7 +11,7 @@
 - Ct 数据整理、Delta Ct / Delta Delta Ct / fold change 分析
 - 实验记录模板、样本表和 Ct 表格模板管理
 - 用 Python 自动生成 RT 体系计划和 Delta Delta Ct 分析结果
-- 保留原始 `05_Result_Processing` GUI 项目源码、示例和打包版本
+- 保留原始 `05_Result_Processing` GUI 项目源码和匿名示例
 - 后续开发自动化分析工具或实验室 SOP 文档库
 
 ## 项目结构
@@ -19,7 +19,6 @@
 ```text
 rt-qpcr-protocol-guide/
 +-- README.md
-+-- UPLOAD_TO_GITHUB.md
 +-- LICENSE
 +-- pyproject.toml
 +-- .gitignore
@@ -52,9 +51,7 @@ rt-qpcr-protocol-guide/
 |           +-- src/
 |           +-- scripts/
 |           +-- examples/
-|           +-- Results/
 |           +-- configs/
-|           +-- exe版本/
 |           +-- README.md
 +-- templates/
     +-- ct_values_template.csv
@@ -114,7 +111,7 @@ flowchart LR
 ### 安装
 
 ```powershell
-cd "J:\Learning_Resource\Experiment_Protocal\Basic_Experiment\RT-qpcr\rt-qpcr-protocol-guide"
+cd rt-qpcr-protocol-guide
 python -m pip install -e .
 ```
 
@@ -167,20 +164,14 @@ python -m pytest tests -q
 legacy/05_Result_Processing/结果处理/
 ```
 
-这个目录包含 Tkinter GUI 源码、示例数据、导出样例、配置文件和打包好的 exe。为了避免把本机环境塞进仓库，`exe版本/venv/` 没有上传；需要 Python 运行时请按 `requirements.txt` 安装依赖。
+这个目录包含 Tkinter GUI 源码、最小示例数据、配置文件和运行脚本。为了避免把本机环境、二进制程序和生成结果塞进仓库，`exe版本/venv/`、打包 `exe`、日志和导出结果没有上传；需要 Python 运行时请按 `requirements.txt` 安装依赖。
 
 运行 GUI 源码：
 
 ```powershell
-cd "J:\Learning_Resource\Experiment_Protocal\Basic_Experiment\RT-qpcr\rt-qpcr-protocol-guide\legacy\05_Result_Processing\结果处理"
+cd legacy\05_Result_Processing\结果处理
 python -m pip install -r requirements.txt
 python scripts\start_gui.py
-```
-
-也可以直接双击：
-
-```text
-legacy/05_Result_Processing/结果处理/exe版本/qPCR结果处理器.exe
 ```
 
 ## 免责声明
