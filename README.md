@@ -11,6 +11,7 @@
 - Ct 数据整理、Delta Ct / Delta Delta Ct / fold change 分析
 - 实验记录模板、样本表和 Ct 表格模板管理
 - 用 Python 自动生成 RT 体系计划和 Delta Delta Ct 分析结果
+- 保留原始 `05_Result_Processing` GUI 项目源码、示例和打包版本
 - 后续开发自动化分析工具或实验室 SOP 文档库
 
 ## 项目结构
@@ -44,6 +45,17 @@ rt-qpcr-protocol-guide/
 |   +-- test_primer_qc.py
 |   +-- test_qpcr_analysis.py
 |   +-- test_rt_calculator.py
++-- legacy/
+|   +-- 05_Result_Processing/
+|       +-- README.md
+|       +-- 结果处理/
+|           +-- src/
+|           +-- scripts/
+|           +-- examples/
+|           +-- Results/
+|           +-- configs/
+|           +-- exe版本/
+|           +-- README.md
 +-- templates/
     +-- ct_values_template.csv
     +-- experiment_record_template.md
@@ -146,6 +158,30 @@ python -m pytest tests -q
 - 引物长度、GC、Tm、产物长度 QC
 - Delta Ct / Delta Delta Ct / fold change 计算
 - summary CSV 导出
+
+## 原始 GUI 项目
+
+本仓库已保留 `_archive/05_Result_Processing` 中的原始结果处理项目，位置：
+
+```text
+legacy/05_Result_Processing/结果处理/
+```
+
+这个目录包含 Tkinter GUI 源码、示例数据、导出样例、配置文件和打包好的 exe。为了避免把本机环境塞进仓库，`exe版本/venv/` 没有上传；需要 Python 运行时请按 `requirements.txt` 安装依赖。
+
+运行 GUI 源码：
+
+```powershell
+cd "J:\Learning_Resource\Experiment_Protocal\Basic_Experiment\RT-qpcr\rt-qpcr-protocol-guide\legacy\05_Result_Processing\结果处理"
+python -m pip install -r requirements.txt
+python scripts\start_gui.py
+```
+
+也可以直接双击：
+
+```text
+legacy/05_Result_Processing/结果处理/exe版本/qPCR结果处理器.exe
+```
 
 ## 免责声明
 

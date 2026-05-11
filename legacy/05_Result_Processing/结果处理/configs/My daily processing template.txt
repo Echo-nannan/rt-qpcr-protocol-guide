@@ -1,0 +1,23 @@
+# qPCR处理器配置文件
+sample_count=12
+sample_0=Sample1,1,2
+sample_1=Sample2,3,4
+sample_2=Sample3,5,6
+sample_3=Sample4,7,8
+sample_4=Sample5,9,10
+sample_5=Sample6,9,12
+sample_6=Sample7,13,14
+sample_7=Sample8,15,16
+sample_8=Sample9,17,18
+sample_9=Sample10,19,20
+sample_10=Sample11,21,22
+sample_11=Sample12,23,24
+gene_count=8
+gene_0=Gene1,A,B
+gene_1=Gene2,C,D
+gene_2=Gene3,E,F
+gene_3=Gene4,G,H
+gene_4=Gene5,I,J
+gene_5=Gene6,K,L
+gene_6=Gene7,M,N
+gene_7=Gene8,O,P
