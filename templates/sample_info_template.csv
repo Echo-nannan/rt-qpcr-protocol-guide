@@ -1,0 +1,6 @@
+sample_id,group,tissue,batch,notes
+S1,Control,Brain,Batch1,
+S2,Control,Brain,Batch1,
+S3,Treatment,Brain,Batch1,
+S4,Treatment,Brain,Batch1,
+

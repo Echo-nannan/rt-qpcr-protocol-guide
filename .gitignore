@@ -1,0 +1,36 @@
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Local outputs
+results/
+outputs/
+reports/
+logs/
+*.log
+
+# Large/generated lab artifacts
+*.exe
+*.zip
+*.7z
+*.rar
+*.tmp
+~$*
+
+# Raw local archive should stay outside this clean GitHub project
+_archive/
+_backup/
+_scaffolds/
+

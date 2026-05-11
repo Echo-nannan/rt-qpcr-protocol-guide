@@ -1,0 +1,10 @@
+sample_id,gene,ct,replicate,well
+S1,GAPDH,18.5,1,A1
+S1,GAPDH,18.4,2,A2
+S1,GAPDH,18.6,3,A3
+S1,GeneA,24.2,1,B1
+S1,GeneA,24.4,2,B2
+S1,GeneA,24.3,3,B3
+S2,GAPDH,18.7,1,C1
+S2,GeneA,23.9,1,D1
+
