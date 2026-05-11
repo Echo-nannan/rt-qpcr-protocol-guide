@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rt-qpcr-protocol-guide"
+version = "0.1.0"
+description = "RT-qPCR protocol notes plus small Python utilities for RT planning and Delta Delta Ct analysis."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Echo-nannan" },
+]
+keywords = ["rt-qpcr", "ddct", "qpcr", "rna", "protocol"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[project.scripts]
+rt-qpcr-guide = "rt_qpcr_guide.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rt_qpcr_guide"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+

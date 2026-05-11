@@ -65,5 +65,15 @@ cd "J:\Learning_Resource\Experiment_Protocal\Basic_Experiment\RT-qpcr\rt-qpcr-pr
 git status
 ```
 
-不要把原始 `_archive`、venv、exe、日志和备份目录一起上传。
+不要把原始 `_archive`、venv、exe、日志和备份目录一起上传。当前项目已经包含干净的 Python 源码、测试、模板和文档，可以直接作为完整仓库上传。
 
+## 上传后检查
+
+上传完成后，GitHub 仓库首页应该能看到：
+
+- `README.md`
+- `pyproject.toml`
+- `src/rt_qpcr_guide/`
+- `tests/`
+- `docs/`
+- `templates/`
